@@ -1,0 +1,1029 @@
+/* ============================================================
+   GUIDE CITOYEN — CONSTITUTION DU TCHAD
+   Style : Organisation / ONG institutionnelle
+   Palette : Bleu souverain · Or constitutionnel · Rouge tchadien
+   Typographie : Fraunces (titres) + Outfit (corps)
+   ============================================================ */
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Couleurs principales */
+  --bleu:        #1A2E8F;
+  --bleu-vif:    #2E52C8;
+  --bleu-nuit:   #0D1B5E;
+  --or:          #F2C11E;
+  --or-pale:     #F9E47A;
+  --rouge:       #C8102E;
+  --vert:        #1B7A4A;
+  --violet:      #6B3FA0;
+  --orange:      #E07A00;
+  --teal:        #007A8C;
+
+  /* Surfaces */
+  --bg:          #F6F7FA;
+  --bg-alt:      #EEF0F8;
+  --card:        #FFFFFF;
+  --texte:       #111827;
+  --gris:        #5A5F78;
+  --gris-clair:  #E4E6EF;
+  --bordure:     #D6D9E8;
+
+  /* Typographie */
+  --font-serif:  'Fraunces', Georgia, serif;
+  --font-sans:   'Outfit', 'Segoe UI', sans-serif;
+
+  /* Espacements */
+  --section-v:   88px;
+  --radius:      14px;
+  --radius-lg:   22px;
+  --radius-pill: 50px;
+
+  /* Ombres */
+  --shadow-sm:  0 2px 8px rgba(17, 24, 55, .06);
+  --shadow-md:  0 6px 24px rgba(17, 24, 55, .1);
+  --shadow-lg:  0 16px 48px rgba(17, 24, 55, .14);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--texte);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────────────────────────────────────
+   UTILITAIRES
+───────────────────────────────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+.section   { padding: var(--section-v) 0; }
+
+.text-bleu  { color: var(--bleu); }
+.text-or    { color: var(--or); }
+.text-rouge { color: var(--rouge); }
+
+/* Fade-in scroll */
+.fade-in { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ─────────────────────────────────────────────────────────
+   EN-TÊTES DE SECTION
+───────────────────────────────────────────────────────── */
+.section-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-tag::before {
+  content: '';
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 18px;
+  letter-spacing: -.02em;
+}
+
+.section-intro {
+  font-size: 16px;
+  color: var(--gris);
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 52px;
+  font-weight: 300;
+}
+
+/* Callout générique */
+.callout {
+  margin-top: 44px;
+  padding: 22px 28px;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--or);
+  background: rgba(242, 193, 30, .07);
+}
+.callout strong {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  display: block;
+  margin-bottom: 7px;
+}
+.callout p {
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.75;
+}
+
+/* ─────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--bleu-nuit);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+/* Fond dégradé atmosphérique */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(242,193,30,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 45% at 92% 85%, rgba(200,16,46,.10) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 40% at 4%  60%, rgba(46,82,200,.25) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Ligne de décoration institutionnelle (3 couleurs du drapeau) */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--bleu) 33.3%, var(--or) 33.3% 66.6%, var(--rouge) 66.6%);
+}
+
+/* Cercles animés décoratifs */
+.hero-circles { position: absolute; inset: 0; pointer-events: none; }
+.hero-circles span {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 193, 30, .10);
+  animation: pulse 5s ease-in-out infinite;
+}
+.hero-circles span:nth-child(1) { width: 640px; height: 640px; top: -220px; left: -180px; animation-delay: 0s; }
+.hero-circles span:nth-child(2) { width: 420px; height: 420px; bottom: -120px; right: -80px; animation-delay: 1.8s; }
+.hero-circles span:nth-child(3) { width: 260px; height: 260px; top: 52%; right: 8%; animation-delay: 3.5s; }
+
+@keyframes pulse {
+  0%, 100% { opacity: .25; transform: scale(1); }
+  50%       { opacity: .60; transform: scale(1.04); }
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(242, 193, 30, .12);
+  border: 1px solid rgba(242, 193, 30, .35);
+  border-radius: var(--radius-pill);
+  padding: 9px 22px;
+  margin-bottom: 36px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  animation: fadeDown .7s ease both;
+}
+
+/* Titres Hero */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(44px, 7.5vw, 84px);
+  font-weight: 900;
+  color: #fff;
+  line-height: .98;
+  margin-bottom: 20px;
+  letter-spacing: -.03em;
+  animation: fadeDown .7s .18s ease both;
+}
+.hero-title em { color: var(--or); font-style: normal; }
+
+.hero-sub {
+  font-size: clamp(15px, 2.5vw, 19px);
+  color: rgba(255,255,255,.60);
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+  font-weight: 300;
+  animation: fadeDown .7s .3s ease both;
+}
+.hero-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 44px;
+  letter-spacing: .5px;
+  animation: fadeDown .7s .38s ease both;
+}
+
+/* Stats Hero */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-bottom: 52px;
+  animation: fadeDown .7s .44s ease both;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--or);
+  line-height: 1;
+}
+.hero-stat .lbl {
+  font-size: 10px;
+  color: rgba(255,255,255,.40);
+  letter-spacing: 1.5px;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+/* Chips de navigation */
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 52px;
+  animation: fadeDown .7s .50s ease both;
+}
+.chip {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
+  text-decoration: none;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.14);
+}
+.chip:hover {
+  background: var(--or);
+  color: var(--bleu-nuit);
+  border-color: var(--or);
+  transform: translateY(-2px);
+}
+
+.hero-loi {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  letter-spacing: .5px;
+  animation: fadeDown .7s .55s ease both;
+}
+
+/* Flèche défilante */
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bob 2.2s ease infinite;
+}
+.hero-scroll span {
+  display: block;
+  width: 2px;
+  height: 44px;
+  background: linear-gradient(var(--or), transparent);
+  margin: 0 auto;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(9px); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────────────────
+   NAV STICKY
+───────────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(13, 27, 94, .98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0 24px;
+  border-bottom: 2px solid var(--or);
+  box-shadow: 0 2px 20px rgba(0,0,0,.25);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  white-space: nowrap;
+  padding: 7px 14px;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+  text-decoration: none;
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: var(--or);
+  color: var(--bleu-nuit);
+}
+
+/* ─────────────────────────────────────────────────────────
+   01 · PRÉAMBULE (fond foncé)
+───────────────────────────────────────────────────────── */
+.preamb-section {
+  background: linear-gradient(145deg, #0D1B5E 0%, #1A2E8F 55%, #1B3A6B 100%);
+  padding: var(--section-v) 0;
+}
+
+.preamb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.preamb-card {
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(242,193,30,.18);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  color: #fff;
+  transition: background .25s, border-color .25s, transform .25s;
+  cursor: default;
+}
+.preamb-card:hover {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(242,193,30,.45);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.preamb-icon       { font-size: 30px; margin-bottom: 14px; }
+.preamb-art        { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.28); margin-bottom: 6px; }
+.preamb-card-title { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: var(--or); margin-bottom: 9px; }
+.preamb-card-text  { font-size: 13px; line-height: 1.72; color: rgba(255,255,255,.60); }
+
+.preamb-callout {
+  margin-top: 36px;
+  background: rgba(242,193,30,.07);
+  border: 1px solid rgba(242,193,30,.22);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+  color: #fff;
+}
+.preamb-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--or); display: block; margin-bottom: 7px; }
+.preamb-callout p      { font-size: 13.5px; line-height: 1.70; color: rgba(255,255,255,.55); }
+
+/* ─────────────────────────────────────────────────────────
+   02 · PRINCIPES FONDAMENTAUX
+───────────────────────────────────────────────────────── */
+.principes-section { background: var(--bg); }
+
+.principes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.principe-card {
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .28s, box-shadow .28s;
+  cursor: default;
+}
+.principe-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.18);
+}
+
+.principe-card .numero {
+  font-family: var(--font-serif);
+  font-size: 88px;
+  font-weight: 900;
+  position: absolute;
+  top: -14px;
+  right: 16px;
+  opacity: .07;
+  line-height: 1;
+  pointer-events: none;
+}
+.principe-card .icon  { font-size: 34px; margin-bottom: 14px; }
+.principe-card .art   { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; opacity: .45; margin-bottom: 7px; }
+.principe-card h3     { font-family: var(--font-serif); font-size: 20px; font-weight: 700; margin-bottom: 9px; }
+.principe-card p      { font-size: 13px; line-height: 1.72; opacity: .82; }
+
+.pc-blue   { background: var(--bleu);     color: #fff; }
+.pc-or     { background: var(--or);       color: var(--bleu-nuit); }
+.pc-rouge  { background: var(--rouge);    color: #fff; }
+.pc-vert   { background: var(--vert);     color: #fff; }
+.pc-violet { background: var(--violet);   color: #fff; }
+.pc-teal   { background: var(--teal);     color: #fff; }
+
+.principes-callout {
+  margin-top: 36px;
+  background: rgba(26,46,143,.05);
+  border-left: 4px solid var(--bleu);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 22px 28px;
+}
+.principes-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--bleu); display: block; margin-bottom: 7px; }
+.principes-callout p      { font-size: 13.5px; color: var(--gris); line-height: 1.72; }
+
+/* ─────────────────────────────────────────────────────────
+   03 · DROITS FONDAMENTAUX
+───────────────────────────────────────────────────────── */
+.droits-section { background: var(--bg-alt); }
+
+.droits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.droit-item {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border-left: 4px solid transparent;
+  transition: transform .22s, box-shadow .22s;
+  cursor: default;
+  box-shadow: var(--shadow-sm);
+}
+.droit-item:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-md);
+}
+
+.droit-item.cat-liberte    { border-color: var(--bleu-vif); }
+.droit-item.cat-social     { border-color: var(--vert); }
+.droit-item.cat-judiciaire { border-color: var(--or); }
+.droit-item.cat-propriete  { border-color: var(--orange); }
+.droit-item.cat-femmes     { border-color: var(--violet); }
+
+.droit-emoji   { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+.droit-title   { font-weight: 800; font-size: 14px; color: var(--texte); margin-bottom: 3px; }
+.droit-article { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); margin-bottom: 5px; }
+.droit-text    { font-size: 12px; color: var(--gris); line-height: 1.65; }
+
+.droits-callout {
+  margin-top: 32px;
+  background: rgba(200,16,46,.04);
+  border: 1px solid rgba(200,16,46,.14);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+}
+.droits-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rouge); display: block; margin-bottom: 7px; }
+.droits-callout p      { font-size: 13.5px; color: var(--gris); line-height: 1.72; }
+
+/* ─────────────────────────────────────────────────────────
+   04 · SÉPARATION DES POUVOIRS (fond foncé)
+───────────────────────────────────────────────────────── */
+.pouvoirs-section { background: var(--bleu); padding: var(--section-v) 0; }
+
+.pouvoirs-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.pv-col {
+  padding: 34px 28px;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+.pv-col:last-child { border-right: none; }
+
+.pv-header {
+  text-align: center;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+.pv-icon    { font-size: 36px; margin-bottom: 12px; }
+.pv-title   { font-family: var(--font-serif); font-size: 22px; font-weight: 900; color: var(--or); margin-bottom: 7px; }
+.pv-tagline { font-size: 12px; color: rgba(255,255,255,.38); font-style: italic; line-height: 1.55; }
+
+.pv-institution {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 12px;
+  color: #fff;
+  transition: background .2s;
+}
+.pv-institution:last-child { margin-bottom: 0; }
+.pv-institution:hover      { background: rgba(255,255,255,.09); }
+
+.pv-inst-name { font-weight: 800; font-size: 14px; color: rgba(255,255,255,.90); margin-bottom: 5px; }
+.pv-inst-text { font-size: 12px; color: rgba(255,255,255,.44); line-height: 1.62; }
+
+.pouvoirs-callout {
+  margin-top: 32px;
+  background: rgba(242,193,30,.07);
+  border: 1px solid rgba(242,193,30,.20);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+  color: #fff;
+}
+.pouvoirs-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--or); display: block; margin-bottom: 7px; }
+.pouvoirs-callout p      { font-size: 13.5px; color: rgba(255,255,255,.52); line-height: 1.72; }
+
+/* ─────────────────────────────────────────────────────────
+   05 · CONSEIL CONSTITUTIONNEL (fond foncé)
+───────────────────────────────────────────────────────── */
+.cc-section {
+  background: linear-gradient(160deg, #0D1B5E 0%, #1A2E8F 45%, #0D1B5E 100%);
+  padding: var(--section-v) 0;
+}
+
+.cc-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 52px;
+}
+.cc-stat {
+  background: rgba(242,193,30,.07);
+  border: 1px solid rgba(242,193,30,.18);
+  border-radius: var(--radius);
+  padding: 22px 16px;
+  text-align: center;
+  color: #fff;
+  transition: background .2s;
+}
+.cc-stat:hover { background: rgba(242,193,30,.12); }
+.cc-stat .big  { font-family: var(--font-serif); font-size: 46px; font-weight: 900; color: var(--or); line-height: 1; }
+.cc-stat .label{ font-size: 11px; color: rgba(255,255,255,.38); margin-top: 7px; line-height: 1.4; }
+
+.cc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.cc-mission {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: #fff;
+  transition: background .22s, border-color .22s, transform .22s;
+}
+.cc-mission:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(242,193,30,.30);
+  transform: translateY(-4px);
+}
+.cc-num          { font-family: var(--font-serif); font-size: 34px; font-weight: 900; color: var(--or); opacity: .35; line-height: 1; margin-bottom: 10px; }
+.cc-mission-title{ font-weight: 800; font-size: 14px; color: var(--or); margin-bottom: 7px; }
+.cc-mission-art  { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.22); margin-bottom: 8px; }
+.cc-mission-text { font-size: 12px; color: rgba(255,255,255,.52); line-height: 1.65; }
+
+.cc-saisir {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  margin-bottom: 32px;
+}
+.cc-saisir h3        { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 22px; }
+.cc-saisir-list      { display: flex; flex-direction: column; gap: 12px; }
+.cc-saisir-item      { display: flex; gap: 14px; align-items: flex-start; padding: 14px; background: rgba(255,255,255,.04); border-radius: 10px; border: 1px solid rgba(255,255,255,.06); }
+.cc-saisir-icon      { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.cc-saisir-text      { font-size: 13px; color: rgba(255,255,255,.52); line-height: 1.65; }
+.cc-saisir-text strong { color: rgba(255,255,255,.85); font-weight: 700; }
+
+.cc-callout {
+  background: rgba(242,193,30,.06);
+  border: 1px solid rgba(242,193,30,.18);
+  border-radius: var(--radius);
+  padding: 22px 28px;
+}
+.cc-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #fff; display: block; margin-bottom: 7px; }
+.cc-callout p      { font-size: 13.5px; color: rgba(255,255,255,.48); line-height: 1.72; }
+
+/* ─────────────────────────────────────────────────────────
+   06 · PROCESSUS ÉLECTORAL
+───────────────────────────────────────────────────────── */
+.electoral-section { background: var(--bg); padding: var(--section-v) 0; }
+
+.timeline {
+  position: relative;
+  padding-left: 64px;
+  max-width: 760px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--or), rgba(242,193,30,.05));
+  border-radius: 2px;
+}
+.tl-step { position: relative; margin-bottom: 30px; }
+.tl-step:last-child { margin-bottom: 0; }
+
+.tl-dot {
+  position: absolute;
+  left: -50px;
+  width: 38px;
+  height: 38px;
+  background: var(--bleu);
+  border: 3px solid var(--or);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--or);
+  top: 16px;
+  box-shadow: 0 0 0 5px rgba(242,193,30,.10);
+}
+
+.tl-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--bordure);
+  transition: box-shadow .22s, transform .22s;
+}
+.tl-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(5px);
+}
+.tl-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--bleu); margin-bottom: 12px; }
+
+.tl-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.tl-list li {
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.65;
+  display: flex;
+  gap: 9px;
+}
+.tl-list li::before {
+  content: '·';
+  color: var(--or);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────────────
+   07 · DEVOIRS CIVIQUES
+───────────────────────────────────────────────────────── */
+.devoirs-section { background: #EEF2FF; padding: var(--section-v) 0; }
+
+.devoirs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.devoir-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 26px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s, box-shadow .25s;
+  cursor: default;
+  border-top: 3px solid var(--bleu);
+}
+.devoir-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.devoir-icon  { font-size: 32px; margin-bottom: 14px; }
+.devoir-title { font-weight: 800; font-size: 14px; color: var(--texte); margin-bottom: 5px; }
+.devoir-art   { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); margin-bottom: 9px; }
+.devoir-text  { font-size: 12px; color: var(--gris); line-height: 1.68; }
+
+/* ─────────────────────────────────────────────────────────
+   07b · DEVOIRS CALLOUT
+───────────────────────────────────────────────────────── */
+.devoirs-callout {
+  background: var(--card);
+  border-left: 4px solid var(--bleu);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 22px 28px;
+  box-shadow: var(--shadow-sm);
+}
+.devoirs-callout strong { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--bleu); display: block; margin-bottom: 7px; }
+.devoirs-callout p      { font-size: 13.5px; color: var(--gris); line-height: 1.72; }
+
+/* ─────────────────────────────────────────────────────────
+   08 · INSTITUTIONS INDÉPENDANTES
+───────────────────────────────────────────────────────── */
+.institutions-section { background: var(--bg); padding: var(--section-v) 0; }
+
+.inst-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.inst-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 3px solid transparent;
+  transition: transform .25s, box-shadow .25s;
+}
+.inst-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.inst-card.ic-exec  { border-color: var(--or); }
+.inst-card.ic-legis { border-color: var(--bleu); }
+.inst-card.ic-judic { border-color: var(--rouge); }
+.inst-card.ic-ctrl  { border-color: var(--vert); }
+.inst-card.ic-ind   { border-color: var(--violet); }
+.inst-card.ic-cons  { border-color: var(--teal); }
+
+.inst-icon  { font-size: 28px; margin-bottom: 12px; }
+.inst-name  { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--texte); margin-bottom: 5px; }
+.inst-art   { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); margin-bottom: 9px; }
+.inst-text  { font-size: 12px; color: var(--gris); line-height: 1.65; }
+.inst-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  background: var(--gris-clair);
+  color: var(--gris);
+}
+
+/* Variante dorée du header vie (pour vh-or) */
+.vie-header.vh-or .vie-scenario { color: var(--bleu-nuit); }
+.vie-header.vh-or .vie-droit    { color: rgba(13,27,94,.50); }
+.vh-or { background: var(--or); }
+
+/* ─────────────────────────────────────────────────────────
+   COLLECTIVITÉS TERRITORIALES (alias)
+───────────────────────────────────────────────────────── */
+.collectivites-section { background: var(--bg); padding: var(--section-v) 0; }
+
+/* ─────────────────────────────────────────────────────────
+   09 · VIE QUOTIDIENNE
+───────────────────────────────────────────────────────── */
+.vie-section { background: var(--bg-alt); padding: var(--section-v) 0; }
+
+.vie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.vie-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s, transform .25s;
+  border: 1px solid var(--bordure);
+}
+.vie-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+
+.vie-header {
+  padding: 26px 24px 20px;
+  color: #fff;
+}
+.vh-bleu   { background: var(--bleu); }
+.vh-rouge  { background: var(--rouge); }
+.vh-vert   { background: var(--vert); }
+.vh-violet { background: var(--violet); }
+.vh-teal   { background: var(--teal); }
+.vh-orange { background: var(--orange); }
+
+.vie-emoji    { font-size: 28px; margin-bottom: 10px; }
+.vie-scenario { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.vie-droit    { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.50); }
+
+.vie-body { padding: 22px 24px; }
+.vie-points { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 16px; }
+.vie-points li {
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.65;
+  display: flex;
+  gap: 8px;
+}
+.vie-points li::before { content: '›'; color: var(--bleu); font-weight: 700; }
+
+.vie-recours {
+  font-size: 11px;
+  color: rgba(26,46,143,.70);
+  background: rgba(26,46,143,.05);
+  border-left: 3px solid var(--bleu);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.55;
+}
+
+/* ─────────────────────────────────────────────────────────
+   10 · LEXIQUE (fond foncé)
+───────────────────────────────────────────────────────── */
+.lexique-section {
+  background: linear-gradient(160deg, #0D1B5E 0%, #1A2E8F 50%, #0D1B5E 100%);
+  padding: var(--section-v) 0;
+}
+
+.lexique-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.lexique-item {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  transition: background .22s, border-color .22s, transform .22s;
+}
+.lexique-item:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(242,193,30,.28);
+  transform: translateY(-3px);
+}
+.lex-term { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--or); margin-bottom: 9px; }
+.lex-text { font-size: 12.5px; color: rgba(255,255,255,.52); line-height: 1.70; }
+
+/* ─────────────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────────────── */
+.footer {
+  background: #070D2E;
+  padding: 56px 28px;
+  text-align: center;
+  border-top: 3px solid var(--bleu);
+  position: relative;
+  overflow: hidden;
+}
+/* Bande tricolore en haut du footer */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--bleu) 33.3%, var(--or) 33.3% 66.6%, var(--rouge) 66.6%);
+}
+
+.footer-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--or);
+  margin-bottom: 14px;
+}
+.footer-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.40);
+  max-width: 540px;
+  margin: 0 auto 12px;
+  line-height: 1.70;
+}
+.footer-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,.22);
+  letter-spacing: .4px;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  :root { --section-v: 64px; }
+
+  .preamb-grid,
+  .principes-grid,
+  .droits-grid,
+  .pouvoirs-table,
+  .cc-grid,
+  .vie-grid,
+  .lexique-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .cc-stats-row { grid-template-columns: repeat(2, 1fr); }
+  .devoirs-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats   { gap: 28px; }
+}
+
+@media (max-width: 600px) {
+  :root { --section-v: 48px; }
+
+  .container { padding: 0 18px; }
+
+  .preamb-grid,
+  .principes-grid,
+  .droits-grid,
+  .cc-stats-row,
+  .cc-grid,
+  .devoirs-grid,
+  .vie-grid,
+  .inst-grid,
+  .lexique-grid { grid-template-columns: 1fr; }
+
+  .pouvoirs-table { grid-template-columns: 1fr; }
+  .pv-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .pv-col:last-child { border-bottom: none; }
+
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .timeline   { padding-left: 44px; }
+  .tl-dot     { left: -36px; width: 28px; height: 28px; font-size: 12px; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   IMPRESSION / PDF
+───────────────────────────────────────────────────────── */
+@media print {
+  * { animation: none !important; transition: none !important; }
+  .nav, .hero-scroll { display: none !important; }
+
+  .hero {
+    page-break-before: avoid;
+    break-before: avoid;
+    min-height: auto;
+    padding: 60px 40px;
+  }
+
+  .preamb-section, .principes-section, .droits-section,
+  .pouvoirs-section, .cc-section, .electoral-section,
+  .devoirs-section, .institutions-section,
+  .vie-section, .lexique-section {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .preamb-card, .principe-card, .droit-item, .pv-institution,
+  .cc-mission, .tl-card, .devoir-card, .inst-card,
+  .vie-card, .lexique-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .hero, .preamb-section, .pouvoirs-section,
+  .cc-section, .lexique-section {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page { size: A4; margin: 15mm; }
+}
